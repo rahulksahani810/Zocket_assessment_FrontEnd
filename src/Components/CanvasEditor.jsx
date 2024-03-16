@@ -115,7 +115,7 @@ const CanvasEditor = () => {
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-400">Caption:</label>
-          <input type="text" value={captionInput} onChange={handleCaptionChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          <input type="text" value={captionInput} onChange={handleCaptionChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" />
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-400">CTA:</label>
