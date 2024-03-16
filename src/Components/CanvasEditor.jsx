@@ -29,7 +29,7 @@ const CanvasEditor = () => {
       design_pattern: "https://d273i1jagfl543.cloudfront.net/templates/global_temp_landscape_temp_10_Design_Pattern.png"
     }
   });
-  
+
   const [captionInput, setCaptionInput] = useState('');
   const [ctaInput, setCtaInput] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('#0369A1');
@@ -114,11 +114,11 @@ const CanvasEditor = () => {
           </div>
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Caption:</label>
-          <input type="text" value={captionInput} onChange={handleCaptionChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          <label className="block text-sm font-medium text-gray-400">Caption:</label>
+          <input type="text" value={captionInput} onChange={handleCaptionChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">CTA:</label>
+          <label className="block text-sm font-medium text-gray-400">CTA:</label>
           <input type="text" value={ctaInput} onChange={handleCtaChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" />
         </div>
         <label className="block text-sm font-medium text-gray-400">Choose your color:</label>

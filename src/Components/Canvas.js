@@ -41,13 +41,13 @@ class Canvas {
             ctx.textAlign = this.templateData.caption.alignment;
             const captionLines = this.wrapText(ctx, this.templateData.caption.text, this.templateData.caption.max_characters_per_line);
             captionLines.forEach((line, index) => {
-              ctx.fillText(line, this.templateData.caption.position.x, this.templateData.caption.position.y + (index * this.templateData.caption.font_size));
+              ctx.fillText(line, this.templateData.caption.position.x, this.templateData.caption.position.y + 25 + (index * this.templateData.caption.font_size));
             });
 
             // Button
             const ctaWidth = 200;
             const ctaHeight = 60;
-            const ctaRadius = 10; 
+            const ctaRadius = 10;
             ctx.fillStyle = this.templateData.cta.background_color || '#4287f5';
             ctx.strokeStyle = this.templateData.cta.text_color || '#FFFFFF';
             ctx.lineWidth = 2;
@@ -59,7 +59,7 @@ class Canvas {
 
             const ctaText = this.wrapCTAText(ctx, this.templateData.cta.text, this.templateData.cta.max_characters_per_line);
             ctaText.forEach((line, index) => {
-              ctx.fillText(line, this.templateData.cta.position.x + ctaWidth / 2, this.templateData.cta.position.y + ctaHeight / 3 + 10 + (index * this.templateData.cta.font_size));
+              ctx.fillText(line, this.templateData.cta.position.x + ctaWidth / 2, this.templateData.cta.position.y + ctaHeight / 2 + 10 + (index * this.templateData.cta.font_size));
             });
           } else {
             ctx.font = `${this.templateData.caption.font_size}px Arial`;
@@ -67,12 +67,12 @@ class Canvas {
             ctx.textAlign = this.templateData.caption.alignment;
             const defaultCaptionLines = this.wrapText(ctx, this.templateData.caption.text, this.templateData.caption.max_characters_per_line);
             defaultCaptionLines.forEach((line, index) => {
-              ctx.fillText(line, this.templateData.caption.position.x, this.templateData.caption.position.y + (index * this.templateData.caption.font_size));
+              ctx.fillText(line, this.templateData.caption.position.x, this.templateData.caption.position.y + 25 + (index * this.templateData.caption.font_size));
             });
 
             const ctaWidth = 200;
             const ctaHeight = 60;
-            const ctaRadius = 10; 
+            const ctaRadius = 10;
             ctx.fillStyle = this.templateData.cta.background_color || '#4287f5';
             ctx.strokeStyle = this.templateData.cta.text_color || '#FFFFFF';
             ctx.lineWidth = 2;
@@ -84,7 +84,7 @@ class Canvas {
 
             const ctaText = this.wrapCTAText(ctx, this.templateData.cta.text, this.templateData.cta.max_characters_per_line);
             ctaText.forEach((line, index) => {
-              ctx.fillText(line, this.templateData.cta.position.x + ctaWidth / 2, this.templateData.cta.position.y + ctaHeight / 3 + 10 + (index * this.templateData.cta.font_size));
+              ctx.fillText(line, this.templateData.cta.position.x + ctaWidth / 2, this.templateData.cta.position.y + ctaHeight / 2 + 10 + (index * this.templateData.cta.font_size));
             });
           }
         };
@@ -95,19 +95,30 @@ class Canvas {
   wrapText(ctx, text, maxCharactersPerLine) {
     const words = text.split(' ');
     let lines = [];
-    let currentLine = words[0];
+    let currentLine = '';
+    let charCount = 0;
 
-    for (let i = 1; i < words.length; i++) {
+    for (let i = 0; i < words.length; i++) {
       const word = words[i];
-      const width = ctx.measureText(`${currentLine} ${word}`).width;
-      if (width < maxCharactersPerLine * ctx.measureText('A').width) {
-        currentLine += ` ${word}`;
+      const wordLength = word.length;
+
+      if (currentLine === '' || charCount + wordLength <= maxCharactersPerLine) {
+        if (currentLine !== '') {
+          currentLine += ' ';
+          charCount++;
+        }
+        currentLine += word;
+        charCount += wordLength;
       } else {
         lines.push(currentLine);
         currentLine = word;
+        charCount = wordLength;
       }
     }
-    lines.push(currentLine);
+
+    if (currentLine !== '') {
+      lines.push(currentLine);
+    }
     return lines;
   }
 
