@@ -47,13 +47,12 @@ class Canvas {
             // Button
             const ctaWidth = 200;
             const ctaHeight = 60;
-            const ctaRadius = 10; // TODO
+            const ctaRadius = 10; 
             ctx.fillStyle = this.templateData.cta.background_color || '#4287f5';
             ctx.strokeStyle = this.templateData.cta.text_color || '#FFFFFF';
             ctx.lineWidth = 2;
             ctx.lineJoin = 'round';
-            ctx.fillRect(this.templateData.cta.position.x, this.templateData.cta.position.y, ctaWidth, ctaHeight);
-            ctx.strokeRect(this.templateData.cta.position.x, this.templateData.cta.position.y, ctaWidth, ctaHeight);
+            this.drawRoundedRect(ctx, this.templateData.cta.position.x, this.templateData.cta.position.y, ctaWidth, ctaHeight, ctaRadius);
             ctx.font = `${this.templateData.cta.font_size || 30}px Arial`;
             ctx.fillStyle = this.templateData.cta.text_color || '#FFFFFF';
             ctx.textAlign = 'center';
@@ -73,12 +72,12 @@ class Canvas {
 
             const ctaWidth = 200;
             const ctaHeight = 60;
+            const ctaRadius = 10; 
             ctx.fillStyle = this.templateData.cta.background_color || '#4287f5';
             ctx.strokeStyle = this.templateData.cta.text_color || '#FFFFFF';
             ctx.lineWidth = 2;
             ctx.lineJoin = 'round';
-            ctx.fillRect(this.templateData.cta.position.x, this.templateData.cta.position.y, ctaWidth, ctaHeight);
-            ctx.strokeRect(this.templateData.cta.position.x, this.templateData.cta.position.y, ctaWidth, ctaHeight);
+            this.drawRoundedRect(ctx, this.templateData.cta.position.x, this.templateData.cta.position.y, ctaWidth, ctaHeight, ctaRadius);
             ctx.font = `${this.templateData.cta.font_size || 30}px Arial`;
             ctx.fillStyle = this.templateData.cta.text_color || '#FFFFFF';
             ctx.textAlign = 'center';
@@ -92,7 +91,6 @@ class Canvas {
       };
     };
   }
-
 
   wrapText(ctx, text, maxCharactersPerLine) {
     const words = text.split(' ');
@@ -112,6 +110,7 @@ class Canvas {
     lines.push(currentLine);
     return lines;
   }
+
   wrapCTAText(ctx, text, maxCharactersPerLine) {
     const words = text.split(' ');
     let lines = [];
@@ -131,6 +130,17 @@ class Canvas {
     return lines;
   }
 
+  drawRoundedRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.arcTo(x + width, y, x + width, y + height, radius);
+    ctx.arcTo(x + width, y + height, x, y + height, radius);
+    ctx.arcTo(x, y + height, x, y, radius);
+    ctx.arcTo(x, y, x + width, y, radius);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+  }
 }
 
 export default Canvas;

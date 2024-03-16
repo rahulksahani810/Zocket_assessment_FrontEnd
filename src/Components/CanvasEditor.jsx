@@ -29,6 +29,7 @@ const CanvasEditor = () => {
       design_pattern: "https://d273i1jagfl543.cloudfront.net/templates/global_temp_landscape_temp_10_Design_Pattern.png"
     }
   });
+  
   const [captionInput, setCaptionInput] = useState('');
   const [ctaInput, setCtaInput] = useState('');
   const [backgroundColor, setBackgroundColor] = useState('#0369A1');
@@ -96,30 +97,29 @@ const CanvasEditor = () => {
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
       <canvas ref={canvasRef} width={1080} height={1080} className='z-10' />
 
-      <div className="flex flex-col bg-white ">
-        <div className="mb-4 text-center">
-          <h3 className="font-bold text-lg text-gray-900 mb-2 ">AdCustomization</h3>
+      <div className="p-1 pr-2 flex flex-col bg-white">
+        <div className="my-4 text-center">
+          <h3 className="font-bold text-lg text-gray-900">AdCustomization</h3>
           <p className="text-sm text-gray-400 mb-4">Customize your ad and get the templates accordingly</p>
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Image:</label>
           <ImageSelect handleFileChange={handleFileChange} />
         </div>
 
         <div className="mb-4">
           <div className="flex items-center">
             <hr className="flex-grow border-gray-300" />
-            <div className="mx-4 text-sm font-medium text-gray-700">Edit Contents</div>
+            <div className="mx-4 text-sm font-medium text-gray-400">Edit Contents</div>
             <hr className="flex-grow border-gray-300" />
           </div>
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Caption:</label>
-          <input type="text" value={captionInput} onChange={handleCaptionChange} className="bg-white text-gray-800 border-2 border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          <input type="text" value={captionInput} onChange={handleCaptionChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">CTA:</label>
-          <input type="text" value={ctaInput} onChange={handleCtaChange} className="bg-white text-gray-800 border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" />
+          <input type="text" value={ctaInput} onChange={handleCtaChange} className="w-full bg-white text-gray-800 border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500" />
         </div>
         <label className="block text-sm font-medium text-gray-400">Choose your color:</label>
         <div className="mb-4 flex items-center gap-1">
